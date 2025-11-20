@@ -20,3 +20,8 @@ const userSchema = new mongoose.Schema({    // Schema is a class whose construct
     email: String,
     age: Number,
 });
+
+const User = mongoose.model("User", userSchema);
+    // database name        // database name 
+    // database name is converted to small leters and plural form is written.
+const Employee = mongoose.model("Employee", userSchema);
