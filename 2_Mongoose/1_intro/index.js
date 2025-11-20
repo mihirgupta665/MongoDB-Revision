@@ -12,3 +12,11 @@ main()
     .catch((err)=>{ 
         console.log(err); 
     });
+
+// schema defines the shape of the document within that collection
+
+const userSchema = new mongoose.Schema({    // Schema is a class whose constructor takes an object so return or forms also a object
+    name: String,       // objects passed in costructor as key and pair in which key is the column name and its value is the data type
+    email: String,
+    age: Number,
+});
