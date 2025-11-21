@@ -34,4 +34,22 @@ node
 .load index.js
 */
 
-
+// save() : for saving it directly in mongodb we need to save it first each document object has a method save() which returns a promise
+/*
+user1.save()
+    .then((res) => {
+        console.log(res);   // promise if true returns the same saved document
+    })
+    .catch((err) => {
+        console.log("Error in DataBase : " + err);
+    });
+*/
+User.insertMany([
+    {name: "Vaishali Patel", email: "vaishalipatel665@gmail.com", age:22},
+    {name: "Preeti", email: "preetikumari665@gmail.com", age:23},
+    {name: "divyansh", email: "divyansh665@gmail.com", age:24}
+]).then((res)=>{
+    console.log(res);
+}).catch((err)=>{
+    console.log("Error during Insertion : "+err);
+});
