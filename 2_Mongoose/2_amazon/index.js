@@ -10,3 +10,18 @@ Main().then((res) => {
     console.log("Error in connection with database : "+err);
 });
 
+
+
+const amazonSchema = new mongoose.Schema({  // Schema is a class whose object becomes the collection schema
+    title : {
+        type : String,
+        required : true,    // required is equivalent to "not null" of sql
+    },
+    author : {
+        type : String,
+    },
+    page : {
+        type : Number, 
+    }
+});
+
