@@ -32,7 +32,7 @@ const book1 = new Book({title : "Merchant Of Vience", author : "Shakespear", pag
 const book2 = new Book({title : "The Tempest", author : "Shakespear", page : 284});
 const book3 = new Book({title : "Harry Potter", author : "J.K. Rowlings", page : 778});
 
-/*
+
 book1.save().then((res)=>{
     console.log(res);
 }).catch((err)=>{
@@ -48,6 +48,6 @@ book3.save().then((res)=>{
 }).catch((err)=>{
     console.log("Error in inserting : "+err);
 })
-*/
+
 
 
