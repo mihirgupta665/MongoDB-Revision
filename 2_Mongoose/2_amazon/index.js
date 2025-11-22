@@ -22,16 +22,22 @@ const amazonSchema = new mongoose.Schema({  // Schema is a class whose object be
     },
     page : {
         type : Number, 
+    },
+    genre : [String], // array of string are only possible 
+    category : {
+        type : String,
+        enum : ["fictional", "non-fictional"],   // the value for this category must be in this enum only
+        default : "fictional"   // add default value to the key if value not specified explicitly
     }
 });
 
 
 const Book = mongoose.model("Book", amazonSchema);  // model function generates a collection class
 
-const book1 = new Book({title : "Merchant Of Vience", author : "Shakespear", page : 313});
-const book2 = new Book({title : "The Tempest", author : "Shakespear", page : 284});
-const book3 = new Book({title : "Harry Potter", author : "J.K. Rowlings", page : 778});
 
+const book1 = new Book({ title: "Merchant Of Vience", author: "Shakespear", page: 313, category : "fictional" });
+const book2 = new Book({title : "The Tempest", author : "Shakespear", page : 284, category : "non-fictional"});
+const book3 = new Book({ title: "Harry Potter", author: "J.K. Rowlings", page: 778, genre: ["comic", "superhero", "survival"] });
 
 book1.save().then((res)=>{
     console.log(res);
