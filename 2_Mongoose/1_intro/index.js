@@ -58,10 +58,18 @@ User.insertMany([
 */
 
 
-// Model.find() : returns a Query Object which is not a promise butu is thennable
+// Model.find() : returns a Query Object which is not a promise but is thennable
 User.find({age : {$lte : 22}})
     .then((res)=>{
         console.log(res);
     }).catch((err)=>{
         console.log("Error in finding : "+err);
     });
+
+// Model.findById() : is a thennable function used to find with respect to id
+User.findById("69209d3b19689a1c401cad89")  
+    .then((res)=>{
+        console.log(res.name);
+}).catch((err)=>{
+    console.log("Error in finding by id : "+err);
+});
