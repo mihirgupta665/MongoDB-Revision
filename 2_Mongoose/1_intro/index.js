@@ -44,6 +44,8 @@ user1.save()
         console.log("Error in DataBase : " + err);
     });
 */
+
+/*
 User.insertMany([
     {name: "Vaishali Patel", email: "vaishalipatel665@gmail.com", age:22},
     {name: "Preeti", email: "preetikumari665@gmail.com", age:23},
@@ -53,3 +55,13 @@ User.insertMany([
 }).catch((err)=>{
     console.log("Error during Insertion : "+err);
 });
+*/
+
+
+// Model.find() : returns a Query Object which is not a promise butu is thennable
+User.find({age : {$lte : 22}})
+    .then((res)=>{
+        console.log(res);
+    }).catch((err)=>{
+        console.log("Error in finding : "+err);
+    });
