@@ -75,6 +75,7 @@ User.findById("69209d3b19689a1c401cad89")
 });
 */
 
+/*
 // Model.update() : use to update the database takes three parameter {{filter(condition), {updation}, {option(optional)}}}
 User.updateOne({age : {$gt : 23}}, {age : 50})  // updates the first matching document and returns same a query object
     .then((res)=>{
@@ -83,4 +84,15 @@ User.updateOne({age : {$gt : 23}}, {age : 50})  // updates the first matching do
         console.log("Error in updation : "+err);
     });
 // this retuns an acknowledgement response not the updated document
+*/
 
+// Model.findOneAndUpdate() and Model.findByIDAndUpadate() : 
+// it returns the update document but it returns previous document so in order to get updated document add option {new : true}
+User.findByIdAndUpdate("6920a66ea1377fcdc84861f5", {age : 99}, {new : true})    // by default new is false which returns non-updated document
+    .then((res)=>{
+        console.log(res);
+    }).catch((err)=>{
+        console.log("Error in finding and updating "+err);
+    });
+
+    
