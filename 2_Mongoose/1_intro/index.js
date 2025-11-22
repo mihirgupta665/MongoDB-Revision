@@ -57,7 +57,7 @@ User.insertMany([
 });
 */
 
-
+/*
 // Model.find() : returns a Query Object which is not a promise but is thennable
 User.find({age : {$lte : 22}})
     .then((res)=>{
@@ -73,3 +73,14 @@ User.findById("69209d3b19689a1c401cad89")
 }).catch((err)=>{
     console.log("Error in finding by id : "+err);
 });
+*/
+
+// Model.update() : use to update the database takes three parameter {{filter(condition), {updation}, {option(optional)}}}
+User.updateOne({age : {$gt : 23}}, {age : 50})  // updates the first matching document and returns same a query object
+    .then((res)=>{
+        console.log(res);
+    }).catch((err)=>{
+        console.log("Error in updation : "+err);
+    });
+// this retuns an acknowledgement response not the updated document
+
