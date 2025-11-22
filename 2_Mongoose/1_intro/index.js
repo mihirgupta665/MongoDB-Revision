@@ -86,6 +86,7 @@ User.updateOne({age : {$gt : 23}}, {age : 50})  // updates the first matching do
 // this retuns an acknowledgement response not the updated document
 */
 
+/*
 // Model.findOneAndUpdate() and Model.findByIDAndUpadate() : 
 // it returns the update document but it returns previous document so in order to get updated document add option {new : true}
 User.findByIdAndUpdate("6920a66ea1377fcdc84861f5", {age : 99}, {new : true})    // by default new is false which returns non-updated document
@@ -94,5 +95,13 @@ User.findByIdAndUpdate("6920a66ea1377fcdc84861f5", {age : 99}, {new : true})    
     }).catch((err)=>{
         console.log("Error in finding and updating "+err);
     });
+*/
 
-    
+// Model.deleteOne or deleteMany : is used to delete one document or many document respectively but they returns the acknowledged response only.
+// therefor Model.findOneAndDelete or Model.findByIdAndDelete : is used to delete and return the deleted document
+User.findOneAndDelete({name : "Divyansh Goyal"})
+    .then((res)=>{
+        console.log(res);
+    }).catch((err)=>{
+        console.log("Error during deletion : "+err);
+    });
