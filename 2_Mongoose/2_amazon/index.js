@@ -25,3 +25,29 @@ const amazonSchema = new mongoose.Schema({  // Schema is a class whose object be
     }
 });
 
+
+const Book = mongoose.model("Book", amazonSchema);  // model function generates a collection class
+
+const book1 = new Book({title : "Merchant Of Vience", author : "Shakespear", page : 313});
+const book2 = new Book({title : "The Tempest", author : "Shakespear", page : 284});
+const book3 = new Book({title : "Harry Potter", author : "J.K. Rowlings", page : 778});
+
+/*
+book1.save().then((res)=>{
+    console.log(res);
+}).catch((err)=>{
+    console.log("Error in inserting : "+err);
+})
+book2.save().then((res)=>{
+    console.log(res);
+}).catch((err)=>{
+    console.log("Error in inserting : "+err);
+})
+book3.save().then((res)=>{
+    console.log(res);
+}).catch((err)=>{
+    console.log("Error in inserting : "+err);
+})
+*/
+
+
