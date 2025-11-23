@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
+const Chat = require("./models/chat.js");
 
 const app = express();
 app.set("views", path.join("__dirname", "views"));
@@ -21,4 +22,16 @@ app.listen(8080, ()=>{
 
 app.get("/", (req, res)=>{
     res.send("Server is working fine");
+});
+
+chat1 = new Chat({
+    from : "Mihir",
+    to : "Vaishali",
+    message : "Lets connect database to frontend using express server...",
+    created_at : new Date()  //new Date() : creates a random date and time in accordance with utc.
+});
+chat1.save().then((res)=>{
+    console.log(res);
+}).catch((err)=>{
+    console.log("Error in instertion : "+err);
 });

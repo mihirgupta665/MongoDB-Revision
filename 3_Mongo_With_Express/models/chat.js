@@ -10,13 +10,13 @@ const chatSchema = new mongoose.Schema({
     },
     message : {
         type : String,
-        maxLength : 50
+        maxLength : 243
     },
-    created_ad : {
+    created_at : {
         type : Date,
         required: true
     }
-})
+});
 
 const Chat = mongoose.model("Chat", chatSchema);
 
