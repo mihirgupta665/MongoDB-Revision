@@ -39,10 +39,14 @@ chat1.save().then((res)=>{
 });
 */
 
+// index all chat
 app.get("/chats", async (req, res)=>{
     let chats = await Chat.find();    // note : Chat.find() is a asynchronous function so await and async will be used
     // console.log(chats);
     res.render("index", {chats});
 })
 
-app.get("/chats/new", )
+// create new chat
+app.get("/chats/new", (req,res)=>{
+    res.render("new");
+})
