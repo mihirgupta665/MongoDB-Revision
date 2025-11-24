@@ -2,7 +2,8 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const Chat = require("./models/chat.js");
-const methodOverride = require("method-override");
+const methodOverride = require("method-override"); //method override is used to use put requests
+
 
 
 const app = express();
@@ -11,6 +12,7 @@ app.set("view engine", "ejs");
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended : true  }));
+//method override is used to use put requests
 app.use(methodOverride("_method"));
 
 async function Main(){
@@ -85,11 +87,20 @@ app.get("/chats/:id/edit", async (req,res)=>{
     
 });
 
+//method override is used to use put requests
 app.put("/chats/:id", async (req, res)=>{
     let {id} = req.params;
     let {msg : newmsg} = req.body;
     // Chat.findByIdAndUpdate is asynchronous function so await and async need to be used
     let updatedChat = await Chat.findByIdAndUpdate(id, {message : newmsg}, {runValidators : true, new : true});
     console.log(updatedChat);
+    res.redirect("/chats");
+});
+
+// delete or destroy chat
+app.delete("/chats/:id", async (req, res)=>{
+    let {id} = req.params;
+    // findByIdAndDelete is an asynchronous function so await and async keywords must be used.
+    let deleteChat = await Chat.findByIdAndDelete(id);
     res.redirect("/chats");
 });
