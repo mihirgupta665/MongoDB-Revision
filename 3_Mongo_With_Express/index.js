@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const Chat = require("./models/chat.js");
+const methodOverride = require("method-override");
 
 
 const app = express();
@@ -10,6 +11,7 @@ app.set("view engine", "ejs");
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended : true  }));
+app.use(methodOverride("_method"));
 
 async function Main(){
     await mongoose.connect("mongodb://127.0.0.1:27017/sigma_whatsapp");
@@ -81,4 +83,13 @@ app.get("/chats/:id/edit", async (req,res)=>{
     let chat = await Chat.findById(id);
     res.render("edit.ejs", {chat} );
     
+});
+
+app.put("/chats/:id", async (req, res)=>{
+    let {id} = req.params;
+    let {msg : newmsg} = req.body;
+    // Chat.findByIdAndUpdate is asynchronous function so await and async need to be used
+    let updatedChat = await Chat.findByIdAndUpdate(id, {message : newmsg}, {runValidators : true, new : true});
+    console.log(updatedChat);
+    res.redirect("/chats");
 });
