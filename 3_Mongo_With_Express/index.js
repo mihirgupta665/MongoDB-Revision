@@ -4,8 +4,9 @@ const mongoose = require("mongoose");
 const Chat = require("./models/chat.js");
 
 const app = express();
-app.set("views", path.join("__dirname", "views"));
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+app.use(express.static(path.join(__dirname, "public")));
 
 async function Main(){
     await mongoose.connect("mongodb://127.0.0.1:27017/sigma_whatsapp");
@@ -24,6 +25,7 @@ app.get("/", (req, res)=>{
     res.send("Server is working fine");
 });
 
+/*
 chat1 = new Chat({
     from : "Mihir",
     to : "Vaishali",
@@ -35,3 +37,10 @@ chat1.save().then((res)=>{
 }).catch((err)=>{
     console.log("Error in instertion : "+err);
 });
+*/
+
+app.get("/chats", async (req, res)=>{
+    let chats = await Chat.find();    // note : Chat.find() is a asynchronous function so await and async will be used
+    // console.log(chats);
+    res.render("index", {chats});
+})
