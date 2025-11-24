@@ -3,10 +3,13 @@ const path = require("path");
 const mongoose = require("mongoose");
 const Chat = require("./models/chat.js");
 
+
 const app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.urlencoded({ extended : true  }));
 
 async function Main(){
     await mongoose.connect("mongodb://127.0.0.1:27017/sigma_whatsapp");
@@ -54,12 +57,20 @@ app.get("/chats/new", (req,res)=>{
 // thenable function are await function by default so no need to await await and async keywords
 // posting new chat and insertion of new chat on mongodb database
 app.post("/chats", (req, res)=>{
-    let {from, msg, to} = req.body;
-    let newChat = new Chat({
+    // req sent by post is highly secured and its must be extracted by url so express should be made capable of extarcting it.
+    let {from, msg, to} = req.body;     // express.urlencoded({ extended : true })
+    let newChat = new Chat({    
         from : from,
         message : msg,
         to : to,
         created_at : new Date()
     });
-    
+
+    newChat.save().then((res)=>{    // save is a thenaable function so awaiting for this function will take place
+        console.log(res);
+    }).catch((err)=>{
+        console.log("Error in saving new chat : "+err);
+    });
+
+    res.redirect("/chats");
 })
