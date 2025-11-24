@@ -44,3 +44,5 @@ app.get("/chats", async (req, res)=>{
     // console.log(chats);
     res.render("index", {chats});
 })
+
+app.get("/chats/new", )
