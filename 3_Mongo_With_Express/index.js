@@ -50,3 +50,16 @@ app.get("/chats", async (req, res)=>{
 app.get("/chats/new", (req,res)=>{
     res.render("new");
 })
+
+// thenable function are await function by default so no need to await await and async keywords
+// posting new chat and insertion of new chat on mongodb database
+app.post("/chats", (req, res)=>{
+    let {from, msg, to} = req.body;
+    let newChat = new Chat({
+        from : from,
+        message : msg,
+        to : to,
+        created_at : new Date()
+    });
+    
+})
