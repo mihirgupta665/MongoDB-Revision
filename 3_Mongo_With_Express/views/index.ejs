@@ -20,6 +20,8 @@
                 <p>Message : <i><b><%= chat.message %></b></i> </p>
             </div>
             <h3>Recieved By : <i><b><%= chat.to %></b></i></h3>
+            <h5>Time : <%= chat.created_at.toString().split(" ")[4] %> </h5>
+            <h5>Date : <%= chat.created_at.toString().split(" ").slice(0,4).join("-") %>  </h5>
         </div>
         <hr>
     <% } %>
