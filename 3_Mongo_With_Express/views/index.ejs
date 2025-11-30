@@ -18,13 +18,18 @@
             <h3>Sent By : <%= chat.from %> </h3>
             <div class="message">
                 <p>Message : <i><b><%= chat.message %></b></i> </p>
-                <form method="get" action="/chats/<%=chat._id%>/edit">
+                <form style="display:inline" method="get" action="/chats/<%=chat._id%>/edit">
                     <button>Edit Message</button>
+                </form> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <form style="display:inline" method="get" action="/chats/<%=chat._id%>">
+                    <button>Show</button>
                 </form>
+                <br>
                 <br>
                 <form method="post" action="/chats/<%=chat._id%>?_method=DELETE">
                     <button>Delete Chat</button>
                 </form>
+                
             </div>
             <h3>Recieved By : <i><b><%= chat.to %></b></i></h3>
             <h5>Time : <%= chat.created_at.toString().split(" ")[4] %> </h5>
